@@ -523,7 +523,22 @@ pip install cartopy
 <span class="c1"># Show the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<p>In this example, we set the Seaborn style to "whitegrid", which changes the appearance of the plot to use a white background with gridlines. The figure is shown below: </p>
+<p>In this example, we've made the following customizations using Seaborn:</p>
+<ul>
+<li>
+<p>Set the Seaborn style to "whitegrid" for a background with gridlines.</p>
+</li>
+<li>
+<p>Set the Seaborn context to "talk" to adjust the font scale and line width for better readability.</p>
+</li>
+<li>
+<p>Changed the color of coastlines to gray for a different visual appearance.</p>
+</li>
+<li>
+<p>Used a Seaborn color palette ("Set2") for the gridline colors.</p>
+</li>
+</ul>
+<p>These customizations demonstrate how Seaborn can be used alongside Matplotlib and Cartopy to create visually appealing maps with enhanced aesthetics and readability. Feel free to further experiment with Seaborn's styling options to tailor the map's appearance according to your preferences. The figure is shown below: </p>
 <p><img alt="Plot to show Europe" src="fig4-5.png" /> </p>
 <p><strong>Step 5: Plot Data on the Map</strong></p>
 <p>You can plot data on the map using standard Matplotlib plotting functions, and then customize the appearance using Seaborn.</p>
@@ -548,7 +563,7 @@ pip install cartopy
 <div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;map_seaborn.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 </code></pre></div>
 <p>This saves the map as a PNG image with a resolution of 300 dpi and tight bounding box.</p>
-<p>Congratulations! You've successfully plotted maps using Seaborn to enhance the visual appearance of geospatial data. With Seaborn's styling options, you can create visually appealing maps tailored to your specific needs and preferences. Experiment with different styles, themes, and data to create informative and aesthetically pleasing maps for your analyses and presentations.</p>
+<p>We've successfully plotted maps using Seaborn to enhance the visual appearance of geospatial data. With Seaborn's styling options, you can create visually appealing maps tailored to your specific needs and preferences. Experiment with different styles, themes, and data to create informative and aesthetically pleasing maps for your analyses and presentations.</p>
 
               
             </article>
