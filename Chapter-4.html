@@ -544,15 +544,22 @@ pip install cartopy
 </ul>
 <p>These customizations demonstrate how Seaborn can be used alongside Matplotlib and Cartopy to create visually appealing maps with enhanced aesthetics and readability. Feel free to further experiment with Seaborn's styling options to tailor the map's appearance according to your preferences. The figure is shown below: </p>
 <p><img alt="Plot to show Europe" src="fig4-5.png" /> </p>
-<p><strong>Step 5: Plot Data on the Map</strong></p>
+<p><strong>Step 5: Plot Data on the Map with Seaborn Customization</strong></p>
 <p>You can plot data on the map using standard Matplotlib plotting functions, and then customize the appearance using Seaborn.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Create a figure and axis with Plate Carree projection</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Generate sample data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">num_points</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="mi">180</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_points</span><span class="p">)</span>
+<span class="n">lats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_points</span><span class="p">)</span>
+
+<span class="c1"># Create a figure and axis with Plate Carree projection</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 
-<span class="c1"># Plot cities</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mf">0.118092</span><span class="p">,</span> <span class="mf">51.509865</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>  <span class="c1"># London</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">2.352222</span><span class="p">,</span> <span class="mf">48.856613</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>   <span class="c1"># Paris</span>
+<span class="c1"># Plot random points with Seaborn color palette and marker style</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lons</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">lats</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Dark2&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="c1"># Add coastlines</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
@@ -560,7 +567,16 @@ pip install cartopy
 <span class="c1"># Show the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
-<p>In this example, we plot two cities (London and Paris) on the map using red and blue markers, respectively. The figure is shown below: </p>
+<p>In this updated example:</p>
+<ul>
+<li>
+<p>We generate random latitude and longitude coordinates as sample data.</p>
+</li>
+<li>
+<p>We use Seaborn's scatterplot function to plot the random points on the map. We customize the color using a Seaborn color palette ("Dark2"), marker style to 'o', marker size (s=50), and transparency (alpha=0.7). </p>
+</li>
+</ul>
+<p>The figure is shown below: </p>
 <p><img alt="Plot of two cities (London and Paris)" src="fig4-6.png" /></p>
 <p><strong>Step 6: Save the Map</strong></p>
 <p>You can save the map as an image file using the <code>savefig</code> function, similar to the Matplotlib tutorial.</p>
