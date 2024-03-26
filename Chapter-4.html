@@ -302,6 +302,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#interactive-visualization-using-folium" class="md-nav__link">
+    Interactive Visualization Using Folium
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -364,6 +371,13 @@
           <li class="md-nav__item">
   <a href="#plotting-maps-using-seaborn" class="md-nav__link">
     Plotting Maps Using Seaborn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interactive-visualization-using-folium" class="md-nav__link">
+    Interactive Visualization Using Folium
   </a>
   
 </li>
@@ -586,6 +600,58 @@ pip install cartopy
 <p>The customizations demonstrated in Step 4 and Step 5 how Seaborn can be used alongside Matplotlib and Cartopy to create visually appealing maps with enhanced aesthetics and readability. Feel free to further experiment with Seaborn's styling options to tailor the map's appearance according to your preferences.</p>
 <p>We've successfully plotted maps using Seaborn to enhance the visual appearance of geospatial data. With Seaborn's styling options, you can create visually appealing maps tailored to your specific needs and preferences. Experiment with different styles, themes, and data to create informative and aesthetically pleasing maps for your analyses and presentations.</p>
 <hr />
+<h3 id="interactive-visualization-using-folium">Interactive Visualization Using Folium</h3>
+<p>Folium is a Python library that makes it easy to create interactive maps directly within Jupyter notebooks or web applications. It leverages the Leaflet.js library to generate interactive maps with features such as markers, popups, and layer controls. In this tutorial, we'll explore how to use Folium to create interactive visualizations with geospatial data.</p>
+<p><strong>Step 1: Install Required Libraries</strong></p>
+<p>Before we begin, make sure you have Folium installed. You can install it using pip:</p>
+<div class="highlight"><pre><span></span><code>pip install folium
+</code></pre></div>
+<p><strong>Step 2: Import Libraries</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">folium</span>
+</code></pre></div>
+<p><strong>Step 3: Create a Map</strong></p>
+<p>The first step in creating an interactive visualization with Folium is to create a map object. You can specify the initial center coordinates and zoom level of the map.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a map centered at a specific location</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">51.5074</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1278</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Display the map</span>
+<span class="n">m</span>
+</code></pre></div>
+<p>This code creates a map centered at the coordinates of London (latitude 51.5074, longitude -0.1278) with an initial zoom level of 10.</p>
+<p><strong>Step 4: Add Markers</strong></p>
+<p>You can add markers to the map to indicate specific locations. Each marker can have a popup with additional information.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add markers for some locations</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">51.5074</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1278</span><span class="p">],</span> <span class="n">popup</span><span class="o">=</span><span class="s1">&#39;London&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">48.8566</span><span class="p">,</span> <span class="mf">2.3522</span><span class="p">],</span> <span class="n">popup</span><span class="o">=</span><span class="s1">&#39;Paris&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Display the map with markers</span>
+<span class="n">m</span>
+</code></pre></div>
+<p>This code adds markers for London and Paris to the map, each with a popup displaying the city's name.</p>
+<p><strong>Step 5: Customize Map Tiles</strong></p>
+<p>Folium allows you to customize the appearance of the map by choosing different map tiles. You can choose from various tilesets such as OpenStreetMap, Mapbox, and Stamen.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a map with customized tiles</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">51.5074</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1278</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">tiles</span><span class="o">=</span><span class="s1">&#39;Stamen Terrain&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the map</span>
+<span class="n">m</span>
+</code></pre></div>
+<p>In this example, we've chosen the 'Stamen Terrain' tileset for the map.</p>
+<p><strong>Step 6: Add Additional Features</strong></p>
+<p>Folium supports various additional features such as polygons, lines, and GeoJSON overlays. You can use these features to visualize complex spatial data.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Add a circle overlay</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">51.5074</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1278</span><span class="p">],</span> <span class="n">radius</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Display the map with the circle overlay</span>
+<span class="n">m</span>
+</code></pre></div>
+<p>This code adds a circle overlay to the map, centered at the coordinates of London, with a radius of 5000 meters.</p>
+<p><strong>Step 7: Save the Map</strong></p>
+<p>You can save the interactive map as an HTML file using the <code>save</code> method.</p>
+<div class="highlight"><pre><span></span><code><span class="n">m</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;interactive_map.html&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>This saves the map as an HTML file, which you can open in a web browser to interact with.</p>
+<p>Congratulations! You've successfully created an interactive visualization using Folium. With Folium's intuitive interface and powerful features, you can create interactive maps to explore and visualize geospatial data with ease. Experiment with different features and customization options to create compelling interactive visualizations tailored to your specific needs.</p>
 
               
             </article>
