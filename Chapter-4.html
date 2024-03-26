@@ -1,0 +1,522 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://soumenatta.github.io/Exploring-Earth-s-Data-Using-Geospatial-Analysis-with-Python/Chapter-4.html">
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.2.11">
+    
+    
+      
+        <title>Chapter 4 - Geospatial Data Visualization - Exploring Earth's Data Using Geospatial Analysis with Python by Dr. Soumen Atta, Ph.D.</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8c5ef100.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.9647289d.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="pink">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#exploring-different-visualization-techniques-for-geospatial-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Exploring Earth&#39;s Data Using Geospatial Analysis with Python by Dr. Soumen Atta, Ph.D." class="md-header__button md-logo" aria-label="Exploring Earth's Data Using Geospatial Analysis with Python by Dr. Soumen Atta, Ph.D." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Exploring Earth's Data Using Geospatial Analysis with Python by Dr. Soumen Atta, Ph.D.
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 4 - Geospatial Data Visualization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Exploring Earth&#39;s Data Using Geospatial Analysis with Python by Dr. Soumen Atta, Ph.D." class="md-nav__button md-logo" aria-label="Exploring Earth's Data Using Geospatial Analysis with Python by Dr. Soumen Atta, Ph.D." data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Exploring Earth's Data Using Geospatial Analysis with Python by Dr. Soumen Atta, Ph.D.
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Chapter-1.html" class="md-nav__link">
+        Chapter 1 - Introduction to Geospatial Analysis
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Chapter-2.html" class="md-nav__link">
+        Chapter 2 - Setting Up Your Geospatial Environment
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Chapter-3.html" class="md-nav__link">
+        Chapter 3 - Working with Geospatial Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 4 - Geospatial Data Visualization
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Chapter-4.html" class="md-nav__link md-nav__link--active">
+        Chapter 4 - Geospatial Data Visualization
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-different-visualization-techniques-for-geospatial-data" class="md-nav__link">
+    Exploring Different Visualization Techniques for Geospatial Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotting-maps-using-matplotlib-seaborn-and-other-python-libraries" class="md-nav__link">
+    Plotting maps using Matplotlib, Seaborn, and other Python libraries
+  </a>
+  
+    <nav class="md-nav" aria-label="Plotting maps using Matplotlib, Seaborn, and other Python libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plotting-maps-using-matplotlib" class="md-nav__link">
+    Plotting maps using Matplotlib
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exploring-different-visualization-techniques-for-geospatial-data" class="md-nav__link">
+    Exploring Different Visualization Techniques for Geospatial Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plotting-maps-using-matplotlib-seaborn-and-other-python-libraries" class="md-nav__link">
+    Plotting maps using Matplotlib, Seaborn, and other Python libraries
+  </a>
+  
+    <nav class="md-nav" aria-label="Plotting maps using Matplotlib, Seaborn, and other Python libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plotting-maps-using-matplotlib" class="md-nav__link">
+    Plotting maps using Matplotlib
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+  <h1>Chapter 4 - Geospatial Data Visualization</h1>
+
+<p>Geospatial data visualization is the art and science of representing spatial information in a visually appealing and informative manner. Through maps, charts, and interactive graphics, this chapter explores techniques to effectively communicate complex spatial relationships, patterns, and trends. From thematic mapping to 3D visualization, we delve into the diverse methods and tools that enable us to unlock insights and tell compelling stories about our world's geography. </p>
+<hr />
+<h2 id="exploring-different-visualization-techniques-for-geospatial-data">Exploring Different Visualization Techniques for Geospatial Data</h2>
+<p>Geospatial data visualization is a crucial aspect of understanding and interpreting spatial information effectively. Various visualization techniques exist, each tailored to highlight different aspects of geospatial data, ranging from simple thematic maps to more complex interactive visualizations. Here, we delve into some of the key visualization techniques used in geospatial analysis and exploration:</p>
+<p><strong>1. Thematic Mapping:</strong>
+Thematic mapping involves representing spatial data using visual variables such as color, size, and shape to display thematic information. Common types of thematic maps include choropleth maps, where colors represent different attribute values within predefined geographic areas (e.g., population density maps), and proportional symbol maps, where symbols are scaled proportionally to the attribute value they represent (e.g., circle size representing population size in cities).</p>
+<p><strong>2. Heatmaps:</strong>
+Heatmaps visualize the density or intensity of spatial phenomena by representing data using a gradient color scale. Areas with higher concentrations or densities appear in warmer colors (e.g., red), while areas with lower concentrations appear in cooler colors (e.g., blue). Heatmaps are commonly used to visualize phenomena such as population density, crime hotspots, and environmental pollution levels.</p>
+<p><strong>3. 3D Visualization:</strong>
+3D visualization techniques add an additional dimension to geospatial data, allowing for more immersive and realistic representations of terrain, buildings, and other features. Techniques such as 3D terrain modeling, extrusion of 2D features into 3D shapes, and virtual reality (VR) environments enable users to explore spatial data from different perspectives and angles, enhancing spatial understanding and analysis.</p>
+<p><strong>4. Time Series Visualization:</strong>
+Time series visualization techniques are used to explore temporal patterns and trends in geospatial data over time. Time-enabled maps, animated maps, and time sliders allow users to visualize changes in spatial phenomena (e.g., urban growth, land cover changes, climate patterns) across different time periods, facilitating the identification of trends, anomalies, and relationships.</p>
+<p><strong>5. Interactive Visualization:</strong>
+Interactive visualization techniques enable users to interactively explore and manipulate geospatial data, enhancing engagement and facilitating data exploration. Interactive maps, web-based GIS applications, and dashboards allow users to dynamically query, filter, and visualize spatial data based on user-defined parameters, enabling deeper exploration and analysis of spatial patterns and relationships.</p>
+<p><strong>6. Network Visualization:</strong>
+Network visualization techniques visualize spatial relationships between interconnected features, such as transportation networks, social networks, or supply chains. Techniques such as network graphs, flow maps, and spider diagrams represent connections between nodes or locations, highlighting patterns of movement, connectivity, and interaction within the spatial network.</p>
+<p>In summary, exploring different visualization techniques for geospatial data enables users to effectively communicate spatial information, uncover patterns and trends, and gain insights into complex spatial relationships. By leveraging a diverse range of visualization techniques, analysts, researchers, and decision-makers can enhance their understanding of spatial phenomena and make informed decisions based on spatial data analysis. </p>
+<hr />
+<h2 id="plotting-maps-using-matplotlib-seaborn-and-other-python-libraries">Plotting maps using Matplotlib, Seaborn, and other Python libraries</h2>
+<p>Plotting maps using Matplotlib, Seaborn, and other Python libraries provides powerful tools for visualizing geospatial data in a variety of formats and styles. While Matplotlib is a general-purpose plotting library, Seaborn is specifically designed for statistical data visualization, and other libraries like Plotly and Folium offer additional features such as interactive mapping capabilities. Here, we'll explore how each of these libraries can be used to plot maps in Python. </p>
+<h3 id="plotting-maps-using-matplotlib">Plotting maps using Matplotlib</h3>
+<p>Matplotlib is a powerful Python library for creating static, publication-quality plots. While it doesn't have built-in support for geographic data, it can be combined with other libraries like Cartopy to plot maps. In this tutorial, we'll walk through the steps to plot maps using Matplotlib and Cartopy.</p>
+<p><strong>Step 1: Install Required Libraries</strong></p>
+<p>Before we begin, make sure you have Matplotlib and Cartopy installed. You can install them using pip:</p>
+<div class="highlight"><pre><span></span><code>pip install matplotlib
+pip install cartopy
+</code></pre></div>
+<p><strong>Step 2: Import Libraries</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+</code></pre></div>
+<p>We import Matplotlib as plt and Cartopy's coordinate reference system module as ccrs.</p>
+<p><strong>Step 3: Create a Basic Map</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create a figure and axis with Plate Carree projection</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="c1"># Set global extent</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
+
+<span class="c1"># Add coastlines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p>This code creates a basic map with Matplotlib and Cartopy. We create a figure and axis with a Plate Carree projection, set the global extent, and add coastlines. The figure is shown below: </p>
+<p><img alt="Plot to show earth" src="fig4-1.png" /></p>
+<p><strong>Step 4: Customize the Map</strong></p>
+<p>You can customize the map by adding features such as gridlines, labels, and map projections.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="c1"># Set extent to show Europe</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="c1"># Add coastlines, gridlines, and land</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p>In this example, we set the extent to show Europe, add gridlines with labels, and show land features with black borders. The figure is shown below: </p>
+<p><img alt="Plot to show Europe" src="fig4-2.png" /></p>
+<p><strong>Step 5: Plot Data on the Map</strong></p>
+<p>You can plot data on the map using standard Matplotlib plotting functions.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="c1"># Plot cities</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mf">0.118092</span><span class="p">,</span> <span class="mf">51.509865</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>  <span class="c1"># London</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mf">2.352222</span><span class="p">,</span> <span class="mf">48.856613</span><span class="p">,</span> <span class="s1">&#39;bo&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>   <span class="c1"># Paris</span>
+
+<span class="c1"># Add coastlines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p>In this example, we plot two cities (London and Paris) on the map using red and blue markers, respectively. The figure is shown below: </p>
+<p><img alt="Plot of two cities (London and Paris)" src="fig4-3.png" /> </p>
+<p><strong>Step 6: Save the Map</strong></p>
+<p>You can save the map as an image file using the <code>savefig</code> function.</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;map.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>This saves the map as a PNG image with a resolution of 300 dpi and tight bounding box.</p>
+<p>We've successfully plotted maps using Matplotlib and Cartopy. With these techniques, you can create custom maps for various geographic visualizations and analyses in Python. Experiment with different projections, features, and data to create informative and visually appealing maps tailored to your needs.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="Chapter-3.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 3 - Working with Geospatial Data" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 3 - Working with Geospatial Data
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.748e2769.min.js"></script>
+      
+    
+  </body>
+</html>
